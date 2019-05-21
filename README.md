@@ -1,0 +1,1 @@
+# coinmarketcrap.co
