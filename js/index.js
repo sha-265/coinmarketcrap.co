@@ -8,14 +8,15 @@ $(document).ready(function() {
     //     }
     //   });
 
-    $('#coins').DataTable( {
+    var table = $('#coins').DataTable( {
         "ajax": "https://api.coincap.io/v2/assets?limit=2000",
         "pageLength": 100,
         "columns": [
             { "data": "rank" },
             { "data": "name",
             render: function (data, type, row) {
-              return (data != "Bitcoin" ? "<img style='vertical-align: middle;' src='images/pile-of-poo_1f4a9.png' height='24' width='24' /> Shitcoin #" + (row['rank'] - 1) : "<img style='vertical-align: middle;' src='images/bitcoin.png' height='24' width='24' /> Bitcoin")
+              img = "<img src='images/" + (data != "Bitcoin" ? 'shitcoin' : 'bitcoin') + ".png' height='32' width='32' />"
+              return img + (data != "Bitcoin" ? " Shitcoin #" + (row['rank'] - 1) : " Bitcoin")
             }},
             { "data": "marketCapUsd",
               render: function (toFormat) {
@@ -53,6 +54,20 @@ $(document).ready(function() {
                 ) + "%";
               }
             }
-        ]
+        ],
+        "aoColumnDefs": [ {
+          "aTargets": [6],
+          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+             if ( sData < "0" ) {
+              $(nTd).css('color', 'red')
+            } else if (sData > "0") {
+              $(nTd).css('color', 'green')
+            }
+          }
+        } ]
     } );
+
+    setInterval( function () {
+        table.ajax.reload();
+    }, 10000 );
 } );
