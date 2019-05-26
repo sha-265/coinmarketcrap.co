@@ -12,16 +12,23 @@
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/datatables.min.css"/>
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.6/css/fixedColumns.dataTables.min.css"/>
   <style>
     #coins_length{ display: none }
-    #coins_wrapper{ width: 100% }
+    #coins_wrapper{
+      width: 100%;
+      margin: 0 auto;
+    }
+    th, td {
+      white-space: nowrap;
+      vertical-align: middle !important;
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="container small" style="overflow-y: scroll; white-space: nowrap;">
     Bitcoin: 1 • Shitcoins:  <span id="shitcoins">Loading...</span> •  Market Cap:  $<span id="market-cap">Loading...</span>  •  24h Vol:  $<span id="volume">Loading...</span>  •  BTC Domiance: 100%
   </div>
   <!-- Navigation -->
@@ -60,16 +67,16 @@
       </div>
     </div>
     <div class="row">
-      <table id="coins" class="display table table-striped table-bordered" style="width: 100%">
+      <table id="coins" class="table" width="100%">
         <thead>
             <tr>
-                <th>#</th>
+                <th class="text-center">#</th>
                 <th>Name</th>
-                <th>Market Cap</th>
-                <th>Price</th>
-                <th>Volume (24h)</th>
-                <th>Circulating Supply</th>
-                <th>Change (24h)</th>
+                <th class="text-right">Market Cap</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Volume (24h)</th>
+                <th class="text-right">Circulating Supply</th>
+                <th class="text-right">Change (24h)</th>
             </tr>
         </thead>
       </table>
@@ -80,6 +87,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 

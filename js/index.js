@@ -11,8 +11,14 @@ $(document).ready(function() {
     var table = $('#coins').DataTable( {
         "ajax": "https://api.coincap.io/v2/assets?limit=2000",
         "pageLength": 100,
+        scrollX:        true,
+        fixedColumns: {
+          leftColumns: 2
+        },
         "columns": [
-            { "data": "rank" },
+            { "data": "rank",
+              className: "text-center"
+            },
             { "data": "name",
               render: function (data, type, row) {
                 img = "<img src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' />"
@@ -20,19 +26,23 @@ $(document).ready(function() {
               }
             },
             { "data": "marketCapUsd",
-              "type": "num-fmt",
+              className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 0, '$' )
             },
             { "data": "priceUsd",
+              className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
             },
             { "data": "volumeUsd24Hr",
+              className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 0, '$' )
             },
             { "data": "supply",
+              className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 0 )
             },
             { "data": "changePercent24Hr",
+              className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 2, '', '%' )
             }
         ],
