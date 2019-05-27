@@ -2,7 +2,7 @@ $(document).ready(function() {
     var table = $('#coins').DataTable( {
         "ajax": "https://api.coincap.io/v2/assets?limit=2000",
         "pageLength": 100,
-        scrollX:        true,
+          scrollX:        true,
         fixedColumns: {
           leftColumns: 2
         },
@@ -18,23 +18,28 @@ $(document).ready(function() {
             },
             { "data": "marketCapUsd",
               className: "text-right",
-              render: $.fn.dataTable.render.number( ',', '.', 0, '$' )
+              render: $.fn.dataTable.render.number( ',', '.', 0, '$' ),
+              defaultContent: "$0"
             },
             { "data": "priceUsd",
               className: "text-right",
-              render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
+              render: $.fn.dataTable.render.number( ',', '.', 2, '$' ),
+              defaultContent: "$0.00"
             },
             { "data": "volumeUsd24Hr",
               className: "text-right",
-              render: $.fn.dataTable.render.number( ',', '.', 0, '$' )
+              render: $.fn.dataTable.render.number( ',', '.', 0, '$' ),
+              defaultContent: "$0"
             },
             { "data": "supply",
               className: "text-right",
-              render: $.fn.dataTable.render.number( ',', '.', 0 )
+              render: $.fn.dataTable.render.number( ',', '.', 0 ),
+              defaultContent: "0"
             },
             { "data": "changePercent24Hr",
               className: "text-right",
-              render: $.fn.dataTable.render.number( ',', '.', 2, '', '%' )
+              render: $.fn.dataTable.render.number( ',', '.', 2, '', '%' ),
+              defaultContent: "0.00%"
             }
         ],
         "aoColumnDefs": [ {
