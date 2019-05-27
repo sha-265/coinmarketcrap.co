@@ -1,13 +1,4 @@
 $(document).ready(function() {
-    // $.ajax({url: "https://api.coincap.io/v2/assets?limit=2000", success: function(result){
-    //
-    //   result.data.forEach(function(element) {
-    //     if(element.id != "bitcoin") {
-    //       element.name = "Shitcoin #" + (element.rank - 1)
-    //       element.image = "shitcoin.png"
-    //     }
-    //   });
-
     var table = $('#coins').DataTable( {
         "ajax": "https://api.coincap.io/v2/assets?limit=2000",
         "pageLength": 100,
@@ -66,21 +57,11 @@ $(document).ready(function() {
       var ajaxJson = table.ajax.json().data;
 
       $('#shitcoins').text(ajaxJson.length - 1);
-      $('#market-cap').text(Math.round(ajaxJson.sum('marketCapUsd'))).digits();
-      $('#volume').text(Math.round(ajaxJson.sum('volumeUsd24Hr'))).digits();
+      $('#market-cap').text(Math.round(ajaxJson[0]['marketCapUsd'])).digits();
+      $('#volume').text(Math.round(ajaxJson[0]['volumeUsd24Hr'])).digits();
     });
 
 } );
-
-Array.prototype.sum = function (prop) {
-    var total = 0
-    for ( var i = 0, _len = this.length; i < _len; i++ ) {
-      if (!isNaN(parseFloat(this[i][prop])))
-        total += parseFloat(this[i][prop])
-    }
-
-    return total
-}
 
 $.fn.digits = function(){
   return this.each(function(){
