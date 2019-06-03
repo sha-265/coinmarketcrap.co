@@ -43,7 +43,7 @@
         height: 30px;
         overflow: hidden;
     }
-      #child{
+    #child{
         vertical-align: middle;
         padding-top: 5px;
         width: 100%;
@@ -52,6 +52,9 @@
         padding-bottom: 17px; /* Increase/decrease this value for cross-browser compatibility */
         box-sizing: content-box; /* So the width will be 100% + 17px */
         white-space: nowrap;
+    }
+    .page-footer {
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -113,6 +116,94 @@
         </thead>
       </table>
     </div>
+  </div>
+
+  <footer class="page-footer font-small blue pt-4 border-top">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-5 mt-md-0 mt-3 text-center">
+        <img src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" />
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://github.com/sha-265/coinmarketcrap.co/issues">Issues</a>
+          </li>
+          <li>
+            <a href="mailto:info@coinmarketcrap.co">Contact Me</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-md-4 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Donate</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="bitcoin:bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw" data-toggle="modal" data-target="#donationModal">Bitcoin</a>
+          </li>
+          <li>
+            <a href="#" data-toggle="modal" data-target="#shitcoinModal">Shitcoin</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <!-- Grid row -->
+
+  </div>
+
+  </footer>
+
+  <div class="modal fade" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="donationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Donate Bitcoin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <small>bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw</small>
+        <img src="images/donation-qr.png" />
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="modal fade" id="shitcoinModal" tabindex="-1" role="dialog" aria-labelledby="shitcoinModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Donate Shitcoin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h1>LOL</h1>
+      </div>
+    </div>
+  </div>
   </div>
 
   <!-- Bootstrap core JavaScript -->
