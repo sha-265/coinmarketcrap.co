@@ -2,7 +2,8 @@ $(document).ready(function() {
     var table = $('#coins').DataTable( {
         "ajax": "https://api.coincap.io/v2/assets?limit=2000",
         "pageLength": 100,
-          scrollX:        true,
+        pagingType: "simple",
+        scrollX: true,
         fixedColumns: {
           leftColumns: 2
         },
