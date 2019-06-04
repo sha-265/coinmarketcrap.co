@@ -7,7 +7,7 @@ $(document).ready(function() {
         fixedColumns: {
           leftColumns: 2
         },
-        dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>>" +
+        dom: "<'row'<'col-sm-3'l><'col-sm-9'f p>>" +
              "<'row'<'col-sm-12'tr>>" +
              "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         "columns": [
@@ -39,7 +39,7 @@ $(document).ready(function() {
             { "data": "supply",
               className: "text-right",
               render: $.fn.dataTable.render.number( ',', '.', 0 ),
-              defaultContent: "0"
+              defaultContent: "-"
             },
             { "data": "changePercent24Hr",
               className: "text-right",
