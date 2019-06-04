@@ -56,6 +56,14 @@
     .page-footer {
       margin-top: 40px;
     }
+    #footer-logo {
+      filter: gray; /* IE6-9 */
+      -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+      filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+      opacity: 0.25;
+      filter: alpha(opacity=25); /* For IE8 and earlier */
+    }
+
   </style>
 </head>
 
@@ -128,7 +136,7 @@
 
       <!-- Grid column -->
       <div class="col-md-5 mt-md-0 mt-3 text-center">
-        <img src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" />
+        <img id="footer-logo" src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" />
       </div>
       <!-- Grid column -->
 
@@ -201,6 +209,7 @@
       </div>
       <div class="modal-body text-center">
         <h1>LOL</h1>
+        <img src="images/poo.png" />
       </div>
     </div>
   </div>
@@ -210,6 +219,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/natural.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 

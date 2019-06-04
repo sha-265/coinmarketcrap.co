@@ -7,11 +7,15 @@ $(document).ready(function() {
         fixedColumns: {
           leftColumns: 2
         },
+        dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         "columns": [
             { "data": "rank",
               className: "text-center"
             },
             { "data": "name",
+              type: 'natural',
               render: function (data, type, row) {
                 img = "<img src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' />"
                 return img + (data != "Bitcoin" ? " Shitcoin #" + (row['rank'] - 1) : " Bitcoin")
@@ -56,7 +60,7 @@ $(document).ready(function() {
     } );
 
     setInterval( function () {
-        table.ajax.reload();
+        table.ajax.reload(null, false);
     }, 30000 );
 
     table.on('xhr', function() {
