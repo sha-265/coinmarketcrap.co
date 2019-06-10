@@ -17,7 +17,7 @@ $(document).ready(function() {
             { "data": "name",
               type: 'natural',
               render: function (data, type, row) {
-                img = "<img src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' />"
+                img = "<img src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' alt='" + data + "' />"
                 return img + (data != "Bitcoin" ? " Shitcoin #" + (row['rank'] - 1) : " Bitcoin")
               }
             },
