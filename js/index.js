@@ -17,8 +17,8 @@ $(document).ready(function() {
             { "data": "name",
               type: 'natural',
               render: function (data, type, row) {
-                img = "<img src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' alt='" + row['rank'] + " " + data + "' />"
-                  return img + (data != "Bitcoin" ? " Shitcoin #" + (row['rank'] - 1) : " Bitcoin")
+                img = "<img src='images/" + (data != "Bitcoin" ? ((data != "Nano")) ? 'poo' : 'nano' : 'bitcoin') + ".png' height='32' width='32' alt='" + row['rank'] + " " + data + "' />"
+                  return img + (data != "Bitcoin" ? ((data != "Nano")) ? " Shitcoin #" + (row['rank'] - 1) : " Nano" : " Bitcoin")
               }
             },
             { "data": "marketCapUsd",
