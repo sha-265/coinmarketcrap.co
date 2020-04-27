@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="_sha265">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="_sha265">
+    <title>Bitcoin Market Capitalization | CoinMarketCrap</title>
 
-  <title>Bitcoin Market Capitalization | CoinMarketCrap</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CoinMarketCrap">
+    <meta property="og:image" content="https://coinmarketcrap.co/images/splash.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="315">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="Bitcoin Market Capitalization | CoinMarketCrap" />
+    <meta name="Description" content="Bitcoin market cap rankings, charts, and more" />
+    <meta property="og:description" content="Bitcoin & shitcoins market cap rankings, and more" />
+    <link rel="canonical" href="https://coinmarketcrap.co/" />
+    <meta property="og:url" content="https://coinmarketcrap.co/">
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CoinMarketCrap">
-  <meta property="og:image" content="https://coinmarketcrap.co/images/splash.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="600">
-  <meta property="og:image:height" content="315">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:title" content="Bitcoin Market Capitalization | CoinMarketCrap" />
-  <meta name="Description" content="Bitcoin market cap rankings, charts, and more" />
-  <meta property="og:description" content="Bitcoin & shitcoins market cap rankings, and more" />
-  <link rel="canonical" href="https://coinmarketcrap.co/" />
-  <meta property="og:url" content="https://coinmarketcrap.co/">
+    <link rel="shortcut icon" href="./favicon.png" type="image/png" />
+    <link rel="icon" href="./favicon.png" type="image/png" />
 
-  <link rel="shortcut icon" href="./favicon.png" type="image/png" />
-  <link rel="icon" href="./favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="images/three-dots-svgrepo-com.svg" />
+    <link rel="preload" as="image" href="images/bitcoin.png" />
+    <link rel="preload" as="image" href="images/poo.png" />
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/fc-3.3.0/datatables.min.css"/>
-  <style>
-    #coins_length{ display: none }
-    #coins_wrapper{
-      width: 100%;
-      margin: 0 auto;
-    }
-    th, td {
-      white-space: nowrap;
-      vertical-align: middle !important;
-    }
-    #parent{
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/fc-3.3.0/sl-1.3.1/datatables.min.css"/>
+
+    <style>
+      #coins_length{ display: none }
+      #coins_wrapper{
+        width: 100%;
+      }
+      th, td {
+        white-space: nowrap;
+        vertical-align: middle !important;
+      }
+      #parent{
         width: 100%;
         height: 30px;
         overflow: hidden;
-    }
-    #child{
+      }
+      #child{
         vertical-align: middle;
         padding-top: 5px;
         width: 100%;
@@ -49,180 +55,196 @@
         padding-bottom: 17px; /* Increase/decrease this value for cross-browser compatibility */
         box-sizing: content-box; /* So the width will be 100% + 17px */
         white-space: nowrap;
-    }
-    .page-footer {
-      margin: 50px 0;
-    }
-    #footer-logo {
-      filter: gray; /* IE6-9 */
-      -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-      filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-      opacity: 0.70;
-      filter: alpha(opacity=70); /* For IE8 and earlier */
-    }
+      }
+      .page-footer {
+        margin: 50px 0;
+      }
+      #footer-logo {
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+        filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+        opacity: 0.70;
+        filter: alpha(opacity=70); /* For IE8 and earlier */
+      }
 
-  </style>
-  
-  <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101217841);</script>
-  <script async src="//static.getclicky.com/js"></script>
-</head>
+      .nav-tabs {
+        margin-bottom: -1px;
+      }
 
-<body>
+      .table th {
+        border-top: 0;
+      }
+    </style>
 
-  <div id="parent" class="container small">
-    <div id="child">
-      Bitcoin: 1 • Shitcoins:  <span id="shitcoins">Loading...</span> •  Market Cap:  $<span id="market-cap">&nbsp;Loading...</span>  •  24h Vol:  $<span id="volume">&nbsp;Loading...</span>  •  BTC Dominance: 100%
+    <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101217841);</script>
+    <script async src="//static.getclicky.com/js"></script>
+  </head>
+
+  <body>
+    <div id="parent" class="container small">
+      <div id="child">
+        Bitcoin: 1 • Shitcoins:  <span id="shitcoins">Loading...</span> •  Market Cap:  $<span id="market-cap">&nbsp;Loading...</span>  •  24h Vol:  $<span id="volume">&nbsp;Loading...</span>  •  BTC Dominance: 100%
+      </div>
     </div>
-  </div>
-  <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light static-top border-top border-bottom">
+    <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light static-top border-top border-bottom">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">Info</a>
+            </li>
+
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+
     <div class="container">
-      <a class="navbar-brand" href="#"><img src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#footer">Info</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li> -->
-        </ul>
+      <div class="row">
+        <div class="col text-center">
+          <h2 class="mt-5">Bitcoin and top 99 Shitcoins by Market Capitalization</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <table id="coins" class="table" width="100%">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th class="text-right">Market Cap</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Volume (24h)</th>
+                    <th class="text-right">Circulating Supply</th>
+                    <th class="text-right">Change (24h)</th>
+                    <th></th>
+                </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="mt-5">Bitcoin and top 99 Shitcoins by Market Capitalization</h2>
+    <footer id="footer" class="page-footer font-small blue pt-4 border-top">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-5 mt-md-0 mt-3 text-center text-muted px-5">
+          <img id="footer-logo" src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" />
+          <p class="small gray">Since 2001</p>
+          <p class="small">CoinMarketCrap is a website that provides bitcoin & shitcoins market cap rankings, and more. Our website tracks capitalization of bitcoin & various shitcoins by listing prices, available supply (amount of bitcoin/shitcoins/shitokens that are currently in circulation), trade volume over the last 24 hours, or market capitalizations.</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase">Links</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://github.com/sha-265/coinmarketcrap.co/issues">Issues</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/_sha265">Contact me</a>
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="col-md-4 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase">Donate</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="bitcoin:bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw" data-toggle="modal" data-target="#donationModal">Bitcoin</a>
+            </li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#shitcoinModal">Shitcoin</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- Grid row -->
+
+    </div>
+
+    </footer>
+
+    <div class="modal fade" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="donationModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Donate Bitcoin</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <small>bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw</small>
+            <img src="images/donation-qr.png" />
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <table id="coins" class="table" width="100%">
-        <thead>
-            <tr>
-                <th class="text-center">#</th>
-                <th>Name</th>
-                <th class="text-right">Market Cap</th>
-                <th class="text-right">Price</th>
-                <th class="text-right">Volume (24h)</th>
-                <th class="text-right">Circulating Supply</th>
-                <th class="text-right">Change (24h)</th>
-            </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
 
-  <footer id="footer" class="page-footer font-small blue pt-4 border-top">
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
-
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col-md-5 mt-md-0 mt-3 text-center text-muted px-5">
-        <img id="footer-logo" src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" />
-        <p class="small gray">Since 2001</p>
-        <p class="small">CoinMarketCrap is a website that provides bitcoin & shitcoins market cap rankings, and more. Our website tracks capitalization of bitcoin & various shitcoins by listing prices, available supply (amount of bitcoin/shitcoins/shitokens that are currently in circulation), trade volume over the last 24 hours, or market capitalizations.</p>
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none pb-3">
-
-      <!-- Grid column -->
-      <div class="col-md-3 mb-md-0 mb-3">
-
-        <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="https://github.com/sha-265/coinmarketcrap.co/issues">Issues</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/_sha265">Contact me</a>
-          </li>
-        </ul>
-
-      </div>
-
-      <div class="col-md-4 mb-md-0 mb-3">
-
-        <!-- Links -->
-        <h5 class="text-uppercase">Donate</h5>
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="bitcoin:bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw" data-toggle="modal" data-target="#donationModal">Bitcoin</a>
-          </li>
-          <li>
-            <a href="#" data-toggle="modal" data-target="#shitcoinModal">Shitcoin</a>
-          </li>
-        </ul>
-
+    <div class="modal fade" id="shitcoinModal" tabindex="-1" role="dialog" aria-labelledby="shitcoinModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Donate Shitcoin</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+            <h1>LOL</h1>
+            <img src="images/poo.png" />
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Grid row -->
 
-  </div>
-
-  </footer>
-
-  <div class="modal fade" id="donationModal" tabindex="-1" role="dialog" aria-labelledby="donationModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Donate Bitcoin</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <small>bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw</small>
-        <img src="images/donation-qr.png" />
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="added-toast">
+      <div class="toast-body">
+        Added
       </div>
     </div>
-  </div>
-  </div>
 
-  <div class="modal fade" id="shitcoinModal" tabindex="-1" role="dialog" aria-labelledby="shitcoinModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Donate Shitcoin</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <h1>LOL</h1>
-        <img src="images/poo.png" />
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/fc-3.3.0/datatables.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/natural.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-</body>
-
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/fc-3.3.0/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.20/sorting/natural.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
 </html>
