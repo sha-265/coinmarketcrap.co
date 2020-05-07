@@ -24,77 +24,34 @@
     <link rel="icon" href="./favicon.png" type="image/png" />
 
     <link rel="preload" as="image" href="images/three-dots-svgrepo-com.svg" />
-    <link rel="preload" as="image" href="images/bitcoin.png" />
-    <link rel="preload" as="image" href="images/poo.png" />
+    <link rel="preload" as="image" href="images/bitcoin.svg" />
+    <link rel="preload" as="image" href="images/poo-small.png" />
 
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/fc-3.3.0/sl-1.3.1/datatables.min.css"/>
-
-    <style>
-      #coins_length{ display: none }
-      #coins_wrapper{
-        width: 100%;
-      }
-      th, td {
-        white-space: nowrap;
-        vertical-align: middle !important;
-      }
-      #parent{
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-      }
-      #child{
-        vertical-align: middle;
-        padding-top: 5px;
-        width: 100%;
-        height: 100%;
-        overflow-y: hidden;
-        padding-bottom: 17px; /* Increase/decrease this value for cross-browser compatibility */
-        box-sizing: content-box; /* So the width will be 100% + 17px */
-        white-space: nowrap;
-      }
-      .page-footer {
-        margin: 50px 0;
-      }
-      #footer-logo {
-        filter: gray; /* IE6-9 */
-        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-        filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-        opacity: 0.70;
-        filter: alpha(opacity=70); /* For IE8 and earlier */
-      }
-
-      .nav-tabs {
-        margin-bottom: -1px;
-      }
-
-      .table th {
-        border-top: 0;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
     <script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101217841);</script>
     <script async src="//static.getclicky.com/js"></script>
   </head>
 
   <body>
-    <div id="parent" class="container small">
+    <div id="parent" class="container small ">
       <div id="child">
         Bitcoin: 1 • Shitcoins:  <span id="shitcoins">Loading...</span> •  Market Cap:  $<span id="market-cap">&nbsp;Loading...</span>  •  24h Vol:  $<span id="volume">&nbsp;Loading...</span>  •  BTC Dominance: 100%
       </div>
     </div>
+
     <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-light static-top border-top border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light static-top border-top border-bottom">
       <div class="container">
         <a class="navbar-brand" href="#"><img src='images/logo.png' width="239" height="41" alt="CoinMarketCrap" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav mr-auto ml-auto mt-2 mt-lg-0 text-center font-weight-bold">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
@@ -103,24 +60,24 @@
             <li class="nav-item">
               <a class="nav-link" href="#footer">Info</a>
             </li>
-
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li> -->
           </ul>
+          <form class="my-2">
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <div class="input-group-text bg-transparent border-right-0"><i class="gg-search"></i></div>
+              </span>
+              <input id="search" class="form-control mr-sm-2 border-left-0" type="search" placeholder="Search">
+            </div>
+          </form>
         </div>
       </div>
     </nav>
 
     <!-- Page Content -->
-
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <h2 class="mt-5">Bitcoin and top 99 Shitcoins by Market Capitalization</h2>
+          <h3 class="mt-5">Bitcoin and top 99 Shitcoins by Market Capitalization</h3>
         </div>
       </div>
       <div class="row">
@@ -210,8 +167,10 @@
             </button>
           </div>
           <div class="modal-body text-center">
-            <small>bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw</small>
-            <img src="images/donation-qr.png" />
+            <a href="bitcoin:bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw">
+              <code class="small">bc1qr3tk0p5r39hamtese9j0qkegt2m4w9tkg8wekw</code>
+              <img src="images/donation-qr.png" />
+            </a>
           </div>
         </div>
       </div>

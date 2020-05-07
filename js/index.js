@@ -9,21 +9,19 @@ var table = $('#coins').DataTable( {
   createdRow: function ( row, data, index ) {
     $('td', row).eq(7).attr('id', 'dd-menu-' + data['symbol']);
   },
-  dom: "<'row'<'col nav-tabs' <'row flex-column-reverse flex-md-row align-items-end'<'col-sm-7 col-md-7 toolbar'><'col-sm-5 col-md-5'f p>>>>" +
+  dom: "<'row'<'col nav-tabs' <'row flex-column-reverse flex-md-row align-items-end'<'col-sm-12 col-md-7 toolbar'><'col-sm-12 col-md-5'p>>>>" +
        "<'row'<'col-sm-12'tr>>" +
        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
   columns: [
       { data: "rank",
         className: "text-center",
-        render: function (data, type, row) {
-          return (row['name'] != "Beam" ? data : 9999 )
-        },
         searchable: false
       },
       { data: "name",
         type: 'natural',
+        className: 'font-weight-bold',
         render: function (data, type, row) {
-          img = "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo' : 'bitcoin') + ".png' height='32' width='32' title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + " (" + row['symbol'] + ")' />"
+          img = "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo-small.png' : 'bitcoin.svg') + "' height='32' width='32' title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + " (" + row['symbol'] + ")' />"
             return img + " " + (data != "Bitcoin" ? "Shitcoin #" + (row['rank'] - 1) : data)
         }
       },
@@ -38,7 +36,7 @@ var table = $('#coins').DataTable( {
         render: function ( data ) {
           return $.fn.dataTable.render.number( ',', '.', data < 1 ? 6 : 2, '$' ).display(data);
         },
-        defaultContent: "$0",
+        defaultContent: "$0.000000",
         searchable: false
       },
       { data: "volumeUsd24Hr",
@@ -63,10 +61,10 @@ var table = $('#coins').DataTable( {
       },
       { className: "text-center",
         render: function (data, type, row) {
-                    return '<div data-id="dd-menu-' + row['symbol'] + '" class="dropdown" data-display="static"><button class="btn btn-link" id="dLabel' + row['symbol'] + '" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img width="13px" src="images/three-dots-svgrepo-com.svg" /></button >'
-                          + '<div class="dropdown-menu" aria-labelledby="dLabel' + row['symbol'] + '" data-symbol="' + row['symbol'] + '">'
-                           + '<a class="wl-add dropdown-item"> Add to watchlist</a>'
-                           + '<a class="wl-del dropdown-item"> Delete from watchlist</a></div></div>'
+          return '<div data-id="dd-menu-' + row['symbol'] + '" class="dropdown" data-display="static"><button class="btn btn-link" id="dLabel' + row['symbol'] + '" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img width="13px" src="images/three-dots-svgrepo-com.svg" /></button >'
+            + '<div class="dropdown-menu" aria-labelledby="dLabel' + row['symbol'] + '" data-symbol="' + row['symbol'] + '">'
+            + '<a class="wl-add btn btn-link dropdown-item">Add to watchlist</a>'
+            + '<a class="wl-del btn btn-link dropdown-item">Remove from watchlist</a></div></div>'
         },
         searchable: false,
         sortable: false
@@ -132,12 +130,12 @@ $('#all').click(function () {
 
 $(document).on('click', ".wl-add", function() {
   db.watchlist.put({shitcoin: $(this).parent().data('symbol')});
-  toastr["info"]("Added")
+  // toastr["info"]("Added")
 });
 
 $(document).on('click', ".wl-del", function() {
   db.watchlist.delete($(this).parent().data('symbol'));
-  toastr["info"]("Deleted")
+  // toastr["info"]("Deleted")
 });
 
 $(document).on('show.bs.dropdown', ".dropdown", function() {
@@ -173,4 +171,8 @@ $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
     $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
 } );
 
-$('.toast').toast({animation: true});
+$('#search').keyup(function(){
+    table.search($(this).val()).draw();
+})
+
+// $('.toast').toast({animation: true});
