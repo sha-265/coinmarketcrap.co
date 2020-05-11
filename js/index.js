@@ -120,7 +120,7 @@ db.watchlist.put({shitcoin: "BTC"});
 $('#watchlist').click(function () {
   db.watchlist.toArray(function (array) {
     table.column([5]).search(array.map(function(elem){
-        return '\>' + elem.shitcoin + '\<';
+        return '"' + elem.shitcoin + '"';
     }).join("|"), true, false, false).draw();
   })
 });
