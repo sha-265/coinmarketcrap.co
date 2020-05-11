@@ -1,0 +1,76 @@
+#coins_length{ display: none }
+#coins_wrapper{
+  width: 100%;
+}
+th, td {
+  white-space: nowrap;
+  vertical-align: middle !important;
+}
+#parent{
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+}
+#child{
+  vertical-align: middle;
+  padding-top: 5px;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  padding-bottom: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+  white-space: nowrap;
+}
+.page-footer {
+  margin: 50px 0;
+}
+#footer-logo {
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+  opacity: 0.70;
+  filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+.nav-tabs {
+  margin-bottom: -1px;
+}
+
+.table.dataTable {
+  margin-top: 1px !important;
+}
+
+.table th {
+  border-top: 0;
+}
+
+.gg-search {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-radius: 100%;
+    margin-left: -4px;
+    margin-top: -4px
+}
+
+.gg-search::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 3px;
+    width: 2px;
+    height: 8px;
+    background: currentColor;
+    transform: rotate(-45deg);
+    top: 10px;
+    left: 12px
+}
+
+.disabled {
+  display: none;
+}
