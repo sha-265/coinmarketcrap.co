@@ -21,14 +21,16 @@ var table = $('#coins').DataTable( {
         type: 'natural',
         className: 'font-weight-bold',
         render: function (data, type, row) {
-          img = "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo-small.png' : 'bitcoin.svg') + "' height='32' width='32' title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + " (" + row['symbol'] + ")' />"
-            return img + " " + (data != "Bitcoin" ? "Shitcoin #" + (row['rank'] - 1) : data)
+          return "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo-small.png' : 'bitcoin.svg') + "' height='28' width='28' /> " +
+            "<abbr title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + "'>" +
+              (data != "Bitcoin" ? "Shitcoin #" + (row['rank'] - 1) : data) +
+            "</abbr>"
         }
       },
       { data: "marketCapUsd",
         className: "text-right",
         render: $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-        defaultContent: "$0",
+        defaultContent: "$?",
         searchable: false
       },
       { data: "priceUsd",
@@ -36,22 +38,21 @@ var table = $('#coins').DataTable( {
         render: function ( data ) {
           return $.fn.dataTable.render.number( ',', '.', data < 1 ? 6 : 2, '$' ).display(data);
         },
-        defaultContent: "$0.000000",
+        defaultContent: "$?",
         searchable: false
       },
       { data: "volumeUsd24Hr",
         className: "text-right",
         render: $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-        defaultContent: "$0",
+        defaultContent: "$?",
         searchable: false
       },
       { data: "supply",
         className: "text-right",
         render: function ( data, type, row ) {
-          return $.fn.dataTable.render.number( ',', '.', 0, '', row['symbol'] == "BTC" ? ' BTC' : ' SHT' ).display(data);
+          return $.fn.dataTable.render.number( ',', '.', 0, '', ' <abbr title="'+ row['symbol']  +'">' + (row['symbol'] == "BTC" ? 'BTC' : 'SHT') + '</abbr>' ).display(data);
         },
-        defaultContent: "-",
-        searchable: false
+        defaultContent: "?"
       },
       { data: "changePercent24Hr",
         className: "text-right",
@@ -82,12 +83,12 @@ var table = $('#coins').DataTable( {
     }
   },
   { type: 'natural', targets: 1 },
-  { type: 'formatted-num', targets: 5 },
+  { type: 'formatted-num', targets: [2, 3, 4, 5] },
   { orderSequence: [ "desc", "asc" ], "targets": [ 2, 3, 4, 5, 6] } ]
 });
 
 $("div.toolbar").html('<ul class="nav nav-tabs" id="myTab" role="tablist"> ' +
-            '<li class="nav-item"><a class="nav-link active" id="all" href="#" data-toggle="tab" role="tab" aria-controls="all" aria-selected="true">All</a></li>' +
+            '<li class="nav-item"><a class="nav-link active" id="all" href="#" data-toggle="tab" role="tab" aria-controls="all" aria-selected="true">Top</a></li>' +
             ' <li class="nav-item"><a class="nav-link" id="watchlist" href="#" data-toggle="tab" role="tab" aria-controls="watchlist" aria-selected="false">Watchlist</a></li>' +
           '</ul>');
 
@@ -118,13 +119,15 @@ db.watchlist.put({shitcoin: "BTC"});
 
 $('#watchlist').click(function () {
   db.watchlist.toArray(function (array) {
-    table.column(1).search(array.map(function(elem){
-        return '\\(' + elem.shitcoin + '\\)';
+    table.column([5]).search(array.map(function(elem){
+        return '\>' + elem.shitcoin + '\<';
     }).join("|"), true, false, false).draw();
   })
 });
 
 $('#all').click(function () {
+  table.search('');
+  $('#search').val('');
   table.columns().search('').draw();
 });
 
@@ -135,6 +138,7 @@ $(document).on('click', ".wl-add", function() {
 
 $(document).on('click', ".wl-del", function() {
   db.watchlist.delete($(this).parent().data('symbol'));
+  $( "#watchlist" ).trigger( "click" );
   // toastr["info"]("Deleted")
 });
 
@@ -174,5 +178,3 @@ $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
 $('#search').keyup(function(){
     table.search($(this).val()).draw();
 })
-
-// $('.toast').toast({animation: true});
