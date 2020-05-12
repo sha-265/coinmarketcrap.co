@@ -21,7 +21,7 @@ var table = $('#coins').DataTable( {
         type: 'natural',
         className: 'font-weight-bold',
         render: function (data, type, row) {
-          return "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo-small.png' : 'bitcoin.svg') + "' height='28' width='28' /> " +
+          return "<img alt='" + row['rank'] + "' src='images/" + (data != "Bitcoin" ? 'poo-small.png' : 'bitcoin.svg') + "' height='28' width='28' title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + "' /> " +
             "<abbr title='"+ (data != "Bitcoin" ? 'Marketing buzzword: ' : '') + data + "'>" +
               (data != "Bitcoin" ? "Shitcoin #" + (row['rank'] - 1) : data) +
             "</abbr>"
