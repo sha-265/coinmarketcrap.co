@@ -74,3 +74,7 @@ th, td {
 .disabled {
   display: none;
 }
+
+div.dataTables_wrapper div.dataTables_info {
+  white-space: normal;
+}
