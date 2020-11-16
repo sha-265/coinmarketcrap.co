@@ -50,7 +50,7 @@ var table = $('#coins').DataTable( {
       { data: "supply",
         className: "text-right",
         render: function ( data, type, row ) {
-          return $.fn.dataTable.render.number( ',', '.', 0, '', ' <abbr title="'+ row['symbol']  +'">' + (row['symbol'] == "BTC" ? 'BTC' : 'SHT') + '</abbr>' ).display(data);
+          return $.fn.dataTable.render.number( ',', '.', 0, '', ' <abbr title="'+ row['symbol']  +'">' + (row['symbol'] == "BTC" ? 'BTC' : 'POO') + '</abbr>' ).display(data);
         },
         defaultContent: "?"
       },
