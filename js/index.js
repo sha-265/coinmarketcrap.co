@@ -3,6 +3,7 @@ var table = $('#coins').DataTable( {
   pageLength: 100,
   pagingType: "simple",
   scrollX: true,
+  deferRender: true,
   fixedColumns: {
     leftColumns: 2
   },
