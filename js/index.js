@@ -4,6 +4,9 @@ var table = $('#coins').DataTable( {
   pagingType: "simple",
   scrollX: true,
   deferRender: true,
+  language: {
+    loadingRecords: '<figure><img src="images/poop-ish.gif" alt="loading..." /><br /><figcaption>Loading...</figcaption></figure>'
+  },
   fixedColumns: {
     leftColumns: 2
   },
